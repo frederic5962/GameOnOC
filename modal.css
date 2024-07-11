@@ -1,15 +1,42 @@
+@font-face {
+  font-family: "DMSans-Medium";
+  src: url(./DM_Sans/DMSans-Medium.ttf);
+}
+
+@font-face {
+  font-family: "DMSans-Regular";
+  src: url(./DM_Sans/DMSans-Regular.ttf);
+}
+
+
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --red-highlight: #fe142f;
+  --light: #fff;
+  --dark-light: #232323;
+  --dark: #000;
+  font-size: 62.5%;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
 
+ a {
+  color: #fff;
+  text-decoration: none;
+  outline: none; /* bordure et contour */ 
+} 
+
+ul {
+  list-style: none;
+}
+
+/* Landing Page */
 body {
   margin: 0;
   display: flex;
@@ -30,17 +57,22 @@ img {
   padding-right: 1rem;
 }
 
+.header-logo {
+    float: left;
+}
+
 .topnav {
   overflow: hidden;
   margin: 3.5%;
 }
-.header-logo {
-    float: left;
+.list {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  font-family: "DMSans-Medium" sans-serif;  
 }
-.main-navbar {
-    float: right;
-}
-.topnav a {
+
+.list_item a {
   float: left;
   display: block;
   color: #000000;
@@ -50,6 +82,22 @@ img {
   text-decoration: none;
   font-size: 20px;
   font-family: Roboto, sans-serif;
+}
+
+.list_item a span {
+  position: relative;
+}
+
+.list_item a span::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--light);
+  transition: width 0.3s ease-out;
 }
 
 .topnav a:hover {
@@ -66,6 +114,16 @@ img {
 
 .topnav .icon {
   display: none;
+}
+
+#btn_hamb {
+  display: none;
+  color: var(--red-highlight);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.8rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -138,7 +196,6 @@ main {
 }
 
 /* Modal form */
-
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -478,6 +535,16 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+@media screen and (max-width: 1150px) {
+  #btn_hamb {
+    display: block;
+  }
+}
+.menu_toggle {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
