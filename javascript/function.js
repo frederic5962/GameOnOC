@@ -1,6 +1,6 @@
 export const setErrorMessage = (element, message) => {
-    element.parentElement.setAttribut("data-error-visible", "true");
-    element.parentElement.setAttribut("datat-error", message);
+    element.parentElement.setAttribute("data-error-visible", "true");
+    element.parentElement.setAttribute("datat-error", message);
 };
 
 export const hideErrorMessage = (element) => {

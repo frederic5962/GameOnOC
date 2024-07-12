@@ -146,17 +146,6 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -171,7 +160,7 @@ main {
 
 }
 
-.modal-btn {
+.btn_signup {
   font-size: 145%;
   background: #fe142f;
   display: flex;
@@ -183,7 +172,7 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
+.btn_signup:hover {
   background: #3876ac;
 }
 
@@ -388,6 +377,10 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+.btn-submit:hover, 
+.btn_signup:focus {
+  background: #3876ac;
+}
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -533,14 +526,14 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 1150px) {
-  #btn_hamb {
+
+@media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
     display: block;
+    margin-top: -15px;
   }
-}
-.menu_toggle {
-  visibility: visible;
-  opacity: 1;
 }
 
 @media screen and (max-width: 800px) {
@@ -580,6 +573,15 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
+}
+@media screen and (max-width: 1150px) {
+  #btn_hamb {
+    display: block;
+  }
+}
+.menu_toggle {
+  visibility: visible;
+  opacity: 1;
 }
 
 @keyframes modalopen {
