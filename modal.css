@@ -419,7 +419,7 @@ input {
 
 .hero-img {
   width: 60%;
-  background-image: url(../assets/bg_img.jpg);
+  background-image: url(./assets/bg_img.jpg);
   background-size: cover;
   background-position: center;
 }
