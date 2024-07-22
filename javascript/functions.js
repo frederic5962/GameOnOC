@@ -42,5 +42,21 @@ export function checkIfCitySelected(cities, message) {
 };
 
 
+export function checkIfUserIsYoungerThan18(element, message) {
+    const birthdate = new Date(element.value);
+    let difference = Date.now() - birthdate.getTime();
+    difference = new Date(difference);
+    const userAge = difference.getFullYear() - 1970;
+
+    const currentYear = new Date().getFullYear();
+    const birthYear = birthdate.getFullYear();
+    
+    if (birthYear < currentYear - 100 || birthYear.toString().length !== 4 || userAge < 18) {
+        setErrorMessage(element, message);
+        return false;
+    } 
+    hideErrorMessage(element);
+    return true;
+};
 
 

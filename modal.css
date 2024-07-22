@@ -122,7 +122,8 @@ body {
 }
 
 .form_content,
-.modal_content{
+.modal_content
+ {
   width: 95%;
   border-radius: 10px;
   background: var(--dark-light);
@@ -130,20 +131,23 @@ body {
   animation: modalopen .4s ease-in-out;
 }
 
-.form_content {
+.form_content
+ {
   position: relative;
   padding: 40px 40px 20px;
   max-width: 500px;
 }
 
-.modal_content{
+.modal_content
+{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 40px;
   padding: 40px;
-  max-width: 600px;
+  width: 500px;
+  height: 700px;
 }
 
 .modal_content h2{
@@ -152,6 +156,8 @@ body {
   font-weight: 100;
   font-family: "DMSans-Regular", sans-serif;
 }
+
+
 
 .form_data {
   margin-bottom: 5px;

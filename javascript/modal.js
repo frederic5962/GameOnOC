@@ -1,4 +1,4 @@
-import { checkInputValue, checkIfCitySelected } from "./functions.js";
+import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfUserIsYoungerThan18  } from "./functions.js";
 
 // Modal Navigation
 const formBg = document.querySelector(".formBg");
@@ -9,7 +9,12 @@ const btnNav = document.querySelector('#btn_hamb');
 
 // Form
 const form = document.querySelector('form');
-const email = document.querySelector('#email');
+const firstnameField = document.querySelector('#first');
+const lastnameField = document.querySelector('#last');
+const emailField = document.querySelector('#email');
+const birthdateField = document.querySelector('#birthdate');
+const quantityField = document.querySelector('#quantity');
+const conditionsCheckbox = document.querySelector('#checkbox1');
 const allBtnRadio = document.querySelectorAll("input[name='location']");
 
 // Toggle navbar
@@ -21,30 +26,45 @@ modalClose.addEventListener('click', () => formBg.style.display = "none");
 
 // Message error
 const message = {
-    email: 'Veuillez renseigner une adresse mail valide.',
-    city: 'Veuillez sélectionner une ville',
-    
+    name: "Entrer minimum 2caracteres",
+    email: "Veuillez renseigner une adresse mail valide.",
+    birthdate: "Veuillez renseigner une date de naissance valide.",
+    quantity: "Vveuillez renseigner une quantité entre 1 et 99, les virgules ne sont pas autorisées.",
+    city: "Veuillez sélectionner une ville",
+    conditions: "Veuillez accepter les conditions",
 };
 
 // Regex
+const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/;
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const regexQuantity = /^[1-9][0-9]*$/;
 
 
 // Check input with event listener
-email.addEventListener('input', () => checkInputValue(regexEmail, email, message.email));
+firstnameField.addEventListener('input', () => checkInputValue(regexName, firstnameField, message.name)); 
+lastnameField.addEventListener('input', () => checkInputValue(regexName, lastnameField, message.name));
+emailField.addEventListener('input', () => checkInputValue(regexEmail, emailField, message.email));
+birthdateField.addEventListener('input', () => checkIfUserIsYoungerThan18(birthdateField, message.birthdate));
+quantityField.addEventListener('input', () => checkInputValue(regexQuantity, quantityField, message.quantity));
+conditionsCheckbox.addEventListener('input', () => checkIfConditionsAccepted(conditionsCheckbox, message.conditions));
 allBtnRadio.forEach(radio => radio.addEventListener('change', () => checkIfCitySelected(allBtnRadio, message.city)));
-       
+
 // Validate form
 function validate(e) {
     e.preventDefault();
 
     // Check if all conditions are valid
+    const isFirstNameValid = checkInputValue(regexName, firstnameField, message.name);
+    const isLastNameValid = checkInputValue(regexName, lastnameField, message.name);
+    const isUserAgeValid = checkIfUserIsYoungerThan18(birthdateField, message.birthdate);
+    const isEmailValid = checkInputValue(regexEmail, emailField, message.email);
+    const isQuantityValid = checkInputValue(regexQuantity, quantity, message.quantity);
     const isCitySelected = checkIfCitySelected(allBtnRadio, message.city);
-    const isEmailValid = checkInputValue(regexEmail, email, message.email);
+    const isConditionsAccepted = checkIfConditionsAccepted(conditionsCheckbox, message.conditions);
     
 
     // If all conditions are valid 
-    if (isConditionsAccepted && isCitySelected && isEmailValid) {
+    if (isConditionsAccepted && isCitySelected && isUserAgeValid && isQuantityValid && isEmailValid && isLastNameValid && isFirstNameValid) {
         formBg.style.display = 'none';
         modalSuccess.style.display = 'flex';
         form.reset();
