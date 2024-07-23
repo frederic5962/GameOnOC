@@ -42,7 +42,7 @@ export function checkIfCitySelected(cities, message) {
 };
 
 
-export function checkIfUserIsYoungerThan18(element, message) {
+export function checkIfMajor(element, message) {
     const birthdate = new Date(element.value);
     let difference = Date.now() - birthdate.getTime();
     difference = new Date(difference);

@@ -1,4 +1,4 @@
-import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfUserIsYoungerThan18  } from "./functions.js";
+import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfMajor  } from "./functions.js";
 
 // Modal Navigation
 const formBg = document.querySelector(".formBg");
@@ -26,10 +26,10 @@ modalClose.addEventListener('click', () => formBg.style.display = "none");
 
 // Message error
 const message = {
-    name: "Entrer minimum 2caracteres",
-    email: "Veuillez renseigner une adresse mail valide.",
+    name: "Entrer 2 caracteres minimum",
+    email: "Entrez une adresse mail valide.",
     birthdate: "Veuillez renseigner une date de naissance valide.",
-    quantity: "Vveuillez renseigner une quantité entre 1 et 99, les virgules ne sont pas autorisées.",
+    quantity: "Veuillez renseigner une quantité, les chiffres à virgules ne sont pas autorisées.",
     city: "Veuillez sélectionner une ville",
     conditions: "Veuillez accepter les conditions",
 };
@@ -56,7 +56,7 @@ function validate(e) {
     // Check if all conditions are valid
     const isFirstNameValid = checkInputValue(regexName, firstnameField, message.name);
     const isLastNameValid = checkInputValue(regexName, lastnameField, message.name);
-    const isUserAgeValid = checkIfUserIsYoungerThan18(birthdateField, message.birthdate);
+    const isUserAgeValid = checkIfMajor(birthdateField, message.birthdate);
     const isEmailValid = checkInputValue(regexEmail, emailField, message.email);
     const isQuantityValid = checkInputValue(regexQuantity, quantity, message.quantity);
     const isCitySelected = checkIfCitySelected(allBtnRadio, message.city);
