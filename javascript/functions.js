@@ -41,16 +41,15 @@ export function checkIfCitySelected(cities, message) {
     return true;
 };
 
-
-export function checkIfMajor(element, message) {
+//Check if user is older than 18
+export function checkIfBirthdateIsToday(element, message) {
     const birthdate = new Date(element.value);
-    const userAge = new Date().getFullYear() - birthdate.getFullYear();
+    const today = new Date();
     
- if (birthdate.getFullYear() < new date().getFullYear() - 100 ||
-birthdate.getFullYear().toString().length !== 4 || userAge < 18) {
-    setErrorMessage(element, message);
-    return false;
-}
-hideErrorMessage(element);
-return true;
+    if (birthdate.getFullYear() >= today.getFullYear() - 18) {
+        setErrorMessage(element, message);
+        return false;
+    }
+    hideErrorMessage(element);
+    return true;
 };
