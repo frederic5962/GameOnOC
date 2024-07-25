@@ -1,4 +1,4 @@
-import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfBirthdateIsToday } from "./functions.js";
+import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfBirthdateIsToday, validateQuantity } from "./functions.js";
 
 // Modal Navigation
 const formBg = document.querySelector(".formBg");
@@ -13,7 +13,7 @@ const firstnameField = document.querySelector('#first');
 const lastnameField = document.querySelector('#last');
 const emailField = document.querySelector('#email');
 const birthdateField = document.querySelector('#birthdate');
-const quantityField = document.querySelector('#quantity');
+const quantityField = document.getElementById('quantity');
 const conditionsCheckbox = document.querySelector('#checkbox1');
 const allBtnRadio = document.querySelectorAll("input[name='location']");
 
@@ -39,7 +39,7 @@ const message = {
 // Regex
 const regexName = /^[A-Za-zÀ-ÿ]{2,}$/u;  /* permet à l’expression régulière de prendre en charge la correspondance avec du texte Unicode. */
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,9}$/;
-const regexQuantity = /^[0-9][0-9]*$/;
+
 
 
 // Check input with event listener
@@ -47,7 +47,7 @@ firstnameField.addEventListener('input', () => checkInputValue(regexName, firstn
 lastnameField.addEventListener('input', () => checkInputValue(regexName, lastnameField, message.name));
 emailField.addEventListener('input', () => checkInputValue(regexEmail, emailField, message.email));
 birthdateField.addEventListener('input', () => checkIfBirthdateIsToday(birthdateField, message.birthdate));
-quantityField.addEventListener('input', () => checkInputValue(regexQuantity, quantityField, message.quantity));
+quantityField.addEventListener('input', () => checkInputValue(quantityField, message.quantity)); 
 conditionsCheckbox.addEventListener('input', () => checkIfConditionsAccepted(conditionsCheckbox, message.conditions));
 allBtnRadio.forEach(radio => radio.addEventListener('change', () => checkIfCitySelected(allBtnRadio, message.city)));
 
@@ -60,16 +60,15 @@ function validate(e) {
     const isLastNameValid = checkInputValue(regexName, lastnameField, message.name);
     const isEmailValid = checkInputValue(regexEmail, emailField, message.email);
     const isUserAgeValid = checkIfBirthdateIsToday(birthdateField, message.birthdate);
-    const isQuantityValid = checkInputValue(regexQuantity, quantity, message.quantity);
+    const isQuantityValid = validateQuantity(quantity, message.quantity); 
     const isCitySelected = checkIfCitySelected(allBtnRadio, message.city);
     const isConditionsAccepted = checkIfConditionsAccepted(conditionsCheckbox, message.conditions);
     
 
     // If all conditions are valid 
-    if (isConditionsAccepted && isCitySelected && isQuantityValid && isEmailValid && isLastNameValid && isFirstNameValid && isUserAgeValid) {
+    if (isConditionsAccepted && isCitySelected  && isQuantityValid  && isEmailValid && isLastNameValid && isFirstNameValid && isUserAgeValid) {
         formBg.style.display = 'none';
-        modalSuccess.style.display = 'flex';
-        
+        modalSuccess.style.display = 'flex';    
     } 
 };
 
@@ -77,4 +76,7 @@ function validate(e) {
 formBg.addEventListener('submit', e => validate(e));
 
 // Close Success Modal
-document.querySelector('.modal_content button').addEventListener('click', () => modalSuccess.style.display = "none")
+document.querySelector('.modal_content button').addEventListener('click', () => modalSuccess.style.display = "none"); 
+
+
+

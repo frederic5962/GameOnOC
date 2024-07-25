@@ -53,3 +53,15 @@ export function checkIfBirthdateIsToday(element, message) {
     hideErrorMessage(element);
     return true;
 };
+
+export function validateQuantity(element, message) {
+    const quantityField = document.getElementById('quantity'); // Remplacez 'quantity' par l'ID de votre champ de quantité
+    const quantityValue = quantityField.value.trim(); // Supprimez les espaces inutiles au début et à la fin
+
+    if (quantityValue === '') {
+        setErrorMessage(element, message) // Affichez un message d'erreur
+        return false; // Empêche le formulaire d'être soumis
+    }
+    hideErrorMessage(element);
+    return true;   
+}
