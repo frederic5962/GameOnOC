@@ -9,7 +9,6 @@ const btnNav = document.querySelector('#btn_hamb');
 
 
 // Form
-const form = document.querySelector('form');
 const firstnameField = document.querySelector('#first');
 const lastnameField = document.querySelector('#last');
 const emailField = document.querySelector('#email');
@@ -70,12 +69,12 @@ function validate(e) {
     if (isConditionsAccepted && isCitySelected && isQuantityValid && isEmailValid && isLastNameValid && isFirstNameValid && isUserAgeValid) {
         formBg.style.display = 'none';
         modalSuccess.style.display = 'flex';
-        form.reset();
+        
     } 
 };
 
 // Send Form
-form.addEventListener('submit', e => validate(e));
+formBg.addEventListener('submit', e => validate(e));
 
 // Close Success Modal
 document.querySelector('.modal_content button').addEventListener('click', () => modalSuccess.style.display = "none")
