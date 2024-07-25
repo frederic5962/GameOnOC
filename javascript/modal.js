@@ -37,7 +37,7 @@ const message = {
 };
 
 // Regex
- const regexName = /^[A-Za-z]{2,}$/;
+const regexName = /^[A-Za-zÀ-ÿ]{2,}$/u;  /* permet à l’expression régulière de prendre en charge la correspondance avec du texte Unicode. */
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,9}$/;
 const regexQuantity = /^[0-9][0-9]*$/;
 
