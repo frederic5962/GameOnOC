@@ -1,18 +1,18 @@
 import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, checkIfBirthdateIsToday, validateQuantity } from "./functions.js";
 
 // Modal Navigation
-const formBg = document.querySelector(".formBg");
-const modalSuccess = document.querySelector('.modal_success')
+const formBg = document.getElementById("bgGrround");
+const modalSuccess = document.getElementById('Success')
 const btnSignup = document.querySelectorAll(".btn_signup");
-const modalClose = document.querySelector(".btn-close");
+const modalClose = document.getElementById("close");
 const btnNav = document.querySelector('#btn_hamb');
 
 
 // Form
-const firstnameField = document.querySelector('#first');
-const lastnameField = document.querySelector('#last');
-const emailField = document.querySelector('#email');
-const birthdateField = document.querySelector('#birthdate');
+const firstnameField = document.getElementById('first');
+const lastnameField = document.getElementById('last');
+const emailField = document.getElementById('email');
+const birthdateField = document.getElementById('birthdate');
 const quantityField = document.getElementById('quantity');
 const conditionsCheckbox = document.querySelector('#checkbox1');
 const allBtnRadio = document.querySelectorAll("input[name='location']");
