@@ -69,7 +69,7 @@ function validate(e) {
     const isFirstNameValid = checkInputValue(regexName, firstnameField, message.name);
     const isLastNameValid = checkInputValue(regexName, lastnameField, message.name);
     const isEmailValid = checkInputValue(regexEmail, emailField, message.email);
-    const isBirthdateValid = checkIfAdult(birthdateField, message.birthdate);
+    const isBirthdateValid = checkIfAdult(birthdateField, setErrorMessage);
     const isQuantityValid = validateQuantity(quantity, message.quantity); 
     const isCitySelected = checkIfCitySelected(allBtnRadio, message.city);
     const isConditionsAccepted = checkIfConditionsAccepted(conditionsCheckbox, message.conditions);
