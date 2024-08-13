@@ -1,4 +1,12 @@
-import {  checkInputValue, checkIfCitySelected, checkIfConditionsAccepted, validateQuantity, checkIfAdult, setErrorMessage } from "./functions.js";
+import {  
+    checkInputValue, 
+    checkIfCitySelected, 
+    checkIfConditionsAccepted, 
+    validateQuantity, 
+    checkIfAdult, 
+    setErrorMessage,
+    errorMessages } 
+    from "./functions.js";
 
 // Modal Navigation
 const formBg = document.getElementById("bgGrround");
@@ -27,13 +35,13 @@ modalClose.addEventListener('click', () => formBg.style.display = "none");
 
 
 // Message error
-const message = {
+/* const message = {
     name: "Entrer 2 caracteres minimum",
     email: "Entrez une adresse mail valide.",
     quantity: "Veuillez renseigner une quantité, les chiffres à virgules ne sont pas autorisées.",
     city: "Veuillez sélectionner une ville",
     conditions: "Veuillez accepter les conditions",
-};
+}; */
 
 // Regex
 /* permet à l’expression régulière de prendre en charge la correspondance avec du texte Unicode,
@@ -53,28 +61,27 @@ function resetForm() {
 }
 
 // Check input with event listener
-firstnameField.addEventListener('input', () => checkInputValue(regexName, firstnameField, message.name)); 
-lastnameField.addEventListener('input', () => checkInputValue(regexName, lastnameField, message.name));
-emailField.addEventListener('input', () => checkInputValue(regexEmail, emailField, message.email));
+firstnameField.addEventListener('input', () => checkInputValue(regexName, firstnameField, errorMessages.name)); 
+lastnameField.addEventListener('input', () => checkInputValue(regexName, lastnameField, errorMessages.name));
+emailField.addEventListener('input', () => checkInputValue(regexEmail, emailField, errorMessages.email));
 birthdateField.addEventListener("change", () => checkIfAdult(birthdateField, setErrorMessage));
-quantityField.addEventListener('input', () => checkInputValue(quantityField, message.quantity)); 
-conditionsCheckbox.addEventListener('input', () => checkIfConditionsAccepted(conditionsCheckbox, message.conditions));
-allBtnRadio.forEach(radio => radio.addEventListener('change', () => checkIfCitySelected(allBtnRadio, message.city)));
+quantityField.addEventListener('input', () => checkInputValue(quantityField, errorMessages.quantity)); 
+conditionsCheckbox.addEventListener('input', () => checkIfConditionsAccepted(conditionsCheckbox, errorMessages.conditions));
+allBtnRadio.forEach(radio => radio.addEventListener('change', () => checkIfCitySelected(allBtnRadio, errorMessages.city)));
 
 // Validate form
 function validate(e) {
     e.preventDefault();
 
     // Check if all conditions are valid
-    const isFirstNameValid = checkInputValue(regexName, firstnameField, message.name);
-    const isLastNameValid = checkInputValue(regexName, lastnameField, message.name);
-    const isEmailValid = checkInputValue(regexEmail, emailField, message.email);
+    const isFirstNameValid = checkInputValue(regexName, firstnameField, errorMessages.name);
+    const isLastNameValid = checkInputValue(regexName, lastnameField, errorMessages.name);
+    const isEmailValid = checkInputValue(regexEmail, emailField, errorMessages.email);
     const isBirthdateValid = checkIfAdult(birthdateField, setErrorMessage);
-    const isQuantityValid = validateQuantity(quantity, message.quantity); 
-    const isCitySelected = checkIfCitySelected(allBtnRadio, message.city);
-    const isConditionsAccepted = checkIfConditionsAccepted(conditionsCheckbox, message.conditions);
+    const isQuantityValid = validateQuantity(quantityField, errorMessages.quantity); 
+    const isCitySelected = checkIfCitySelected(allBtnRadio, errorMessages.city);
+    const isConditionsAccepted = checkIfConditionsAccepted(conditionsCheckbox, errorMessages.conditions);
     
-
     // If all conditions are valid 
     if (isConditionsAccepted && isCitySelected  && isQuantityValid  && isEmailValid && isLastNameValid && isFirstNameValid && isBirthdateValid) {
         formBg.style.display = 'none';
