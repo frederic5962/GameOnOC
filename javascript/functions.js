@@ -69,27 +69,29 @@ export function validateQuantity(element, message) {
 // Check if user is older than 18
 export function checkIfAdult(birthdateField, setErrorMessage) {
     const birthdateValue = birthdateField.value.trim();
-    if(birthdateValue === '') {
+    if (!birthdateValue) {
         setErrorMessage(birthdateField, errorMessages.birthdateRequired);
         return false;
     }
 
     const birthdate = new Date(birthdateValue);
     const today = new Date();
-    let age = today.getFullYear() - birthdate.getFullYear();
-    const monthDifference = today.getMonth() - birthdate.getMonth();
-    const dayDifference = today.getDate() - birthdate.getDate();
-    
-    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-        age--;
-    }
+
     if (birthdate > today) {
-        setErrorMessage(birthdateField, erroeMessage.birthdateInvalid);
+        setErrorMessage(birthdateField, errorMessages.birthdateInvalid);
         return false;
-    } else if (age < 18) {
+    }
+
+    const age = today.getFullYear() - birthdate.getFullYear();
+    const isBirthdayPassed = (today.getMonth() > birthdate.getMonth()) || 
+                             (today.getMonth() === birthdate.getMonth() && today.getDate() >= birthdate.getDate());
+
+    if (age < 18 || (age === 18 && !isBirthdayPassed)) {
         setErrorMessage(birthdateField, errorMessages.birthdateUnderage);
         return false;
     }
+
     hideErrorMessage(birthdateField);
     return true;
 }
+
