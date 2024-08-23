@@ -43,7 +43,6 @@ body {
   padding: 40px;
   margin: 0 auto;
 }
-
 .header-logo img{
   width: clamp(16rem, 15vw, 20rem);
 }
@@ -97,6 +96,14 @@ body {
   border-radius: 15px;
 }
 
+/* Error message */
+.error-message {
+  color: var(--red-highlight); /* Utilise la variable de couleur rouge définie */
+  font-weight: bold;
+  display: none; /* Par défaut, les messages d'erreur sont masqués */
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem); /* Augmente la taille de la police */
+}
+
 #btn_hamb {
   display: none;
   color: var(--red-highlight);
@@ -146,8 +153,8 @@ body {
   align-items: center;
   gap: 40px;
   padding: 40px;
-  width: 500px;
-  height: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .modal_content h2{
@@ -156,8 +163,6 @@ body {
   font-weight: 100;
   font-family: "DMSans-Regular", sans-serif;
 }
-
-
 
 .form_data {
   margin-bottom: 5px;
@@ -187,16 +192,11 @@ input {
 }
 
 .form_data[data-error]::after {
-  content: attr(data-error);
-  font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: var(--red-highlight);
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  line-height: 1;
-  opacity: 0;
-  transition: 0.3s;
-  font-family: "Roboto", sans-serif;
+  position: absolute; /* Positionne le message d'erreur en dehors du flux normal */
+  bottom: -20px; /* Ajuste cette valeur selon tes besoins */
+  left: 0;
+  width: 80%;
 }
 
 .form_data[data-error-visible="true"]::after {
@@ -205,6 +205,9 @@ input {
 
 .form_data[data-error-visible="true"] .text-control {
   border: 2px solid var(--red-highlight);
+}
+.form_content {
+  padding: 20px;
 }
 
 .checkbox-label,
@@ -282,13 +285,14 @@ input {
 
 .btn-close {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 10px;
+  top: 10px;
   width: 32px;
   height: 32px;
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  z-index: 1000; /* Assure que le bouton est au-dessus de tout autre contenu */
 }
 
 .btn-close::before,

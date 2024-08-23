@@ -1,5 +1,5 @@
 export const errorMessages = {
-    name: "Entrer deux caracteres minimum",
+    name: "Entrer deux caracteres minimum, les nombres et caracteres speciaux sont pas autorisés.",
     email: "Entrez une adresse mail valide.",
     quantity: "Veuillez renseigner une quantité, les chiffres sont pas autorisés.",
     city: "Veuillez sélectionner une ville",
@@ -9,27 +9,40 @@ export const errorMessages = {
     birthdateRequired: "Veuillez entrer votre date de naissance",
 };
 
-// Show error message
-export const setErrorMessage = (element, message) => {
-    element.parentElement.setAttribute('data-error-visible', 'true');
-    element.parentElement.setAttribute('data-error', message);
-};
+export function hideErrorMessage(element) {
 
-// Hide error message
-export const hideErrorMessage = element => {
-    element.parentElement.removeAttribute('data-error-visible');
-    element.parentElement.removeAttribute('data-error');
-};
+    if (element && element.parentElement) {
+        const errorElement = element.parentElement.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
+    }
+}
 
-// Check input value
+export function setErrorMessage(element, message) {
+    if (element && element.parentElement) {
+        let errorElement = element.parentElement.querySelector('.error-message');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            element.parentElement.appendChild(errorElement);
+        }
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+}
+
+export const regexName = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ]{2,}$/u;
+export const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+
 export function checkInputValue(regex, element, message) {
-    if (!regex.test(element.value)) {
-        setErrorMessage(element, message);
-        return false;
+    if (regex.test(element.value)) {
+        hideErrorMessage(element);
+        return true;
     } 
-    hideErrorMessage(element);
-    return true; 
-};
+    setErrorMessage(element, message);
+    return false; 
+}
 
 // Check if conditions are accepted
 export function checkIfConditionsAccepted(element, message) {
@@ -51,12 +64,8 @@ export function checkIfCitySelected(cities, message) {
     hideErrorMessage(cities[0]);
     return true;
 };
-
-
 export function validateQuantity(element, message) {
-    /* const quantityField = document.getElementById('quantity'); */ // Remplacez 'quantity' par l'ID de votre champ de quantité
     const quantityValue = element.value.trim(); // Supprimez les espaces inutiles au début et à la fin
-
     if (quantityValue === '') {
         setErrorMessage(element, message) // Affichez un message d'erreur
         return false; // Empêche le formulaire d'être soumis
@@ -64,8 +73,6 @@ export function validateQuantity(element, message) {
     hideErrorMessage(element);
     return true;   
 }
-
-
 // Check if user is older than 18
 export function checkIfAdult(birthdateField, setErrorMessage) {
     const birthdateValue = birthdateField.value.trim();
@@ -94,4 +101,13 @@ export function checkIfAdult(birthdateField, setErrorMessage) {
     hideErrorMessage(birthdateField);
     return true;
 }
+
+export function resetForm() {
+    // Exemple de code pour réinitialiser le formulaire
+    document.getElementById('myForm').reset(); // Remplacez 'myForm' par l'ID de votre formulaire
+    // Vous pouvez également masquer les messages d'erreur ici si nécessaire
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(error => error.style.display = 'none');
+}
+
 
