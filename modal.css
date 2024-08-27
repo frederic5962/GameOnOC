@@ -153,14 +153,14 @@ body {
   align-items: center;
   gap: 40px;
   padding: 40px;
-  max-height: 80vh;
-  overflow-y: auto;
+  height:90%;
+  width: 30%;
 }
 
 .modal_content h2{
   text-align: center;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 100;
+  font-weight: 100%;
   font-family: "DMSans-Regular", sans-serif;
 }
 
@@ -414,7 +414,7 @@ input {
 }
 
 .hero-headline {
-  font-size: clamp(3rem, 6.5vw, 9.1rem);
+  font-size: clamp(2.5rem, 4.8vw, 9.1rem);
   font-weight: normal;
   white-space: nowrap;
   font-family: "DMSans-Medium", sans-serif;

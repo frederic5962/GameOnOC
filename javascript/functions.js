@@ -1,12 +1,12 @@
 export const errorMessages = {
-    name: "Entrer deux caracteres minimum, les nombres et caracteres speciaux sont pas autorisés.",
+    name: "Entrer deux caractères minimum, les nombres et caractères spéciaux ne sont pas autorisés.",
     email: "Entrez une adresse mail valide.",
-    quantity: "Veuillez renseigner une quantité, les chiffres sont pas autorisés.",
-    city: "Veuillez sélectionner une ville",
-    conditions: "Veuillez accepter les conditions",
-    birthdateInvalid: "Date de naissance invalide",
-    birthdateUnderage: "Vous devez avoir au moins 18 ans",
-    birthdateRequired: "Veuillez entrer votre date de naissance",
+    quantity: "Veuillez renseigner une quantité, les chiffres ne sont pas autorisés.",
+    city: "Veuillez sélectionner une ville.",
+    conditions: "Veuillez accepter les conditions.",
+    birthdateInvalid: "Date de naissance invalide.",
+    birthdateUnderage: "Vous devez avoir au moins 18 ans.",
+    birthdateRequired: "Veuillez entrer votre date de naissance.",
 };
 
 export function hideErrorMessage(element) {
