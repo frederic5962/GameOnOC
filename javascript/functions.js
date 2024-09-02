@@ -65,7 +65,7 @@ export function checkIfCitySelected(cities, message) {
     return true;
 };
 export function validateQuantity(element, message) {
-    const quantityValue = element.value.trim(); // Supprimez les espaces inutiles au début et à la fin
+    const quantityValue = element.value.trim(); 
     if (quantityValue === '') {
         setErrorMessage(element, message) // Affichez un message d'erreur
         return false; // Empêche le formulaire d'être soumis

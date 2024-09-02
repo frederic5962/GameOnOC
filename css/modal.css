@@ -1,12 +1,12 @@
 /* Fonts */
 @font-face {
   font-family: "DMSans-Medium";
-  src: url(./DM_Sans/DMSans-Medium.ttf);
+  src: url(../DM_Sans/DMSans-Medium.ttf);
 }
 
 @font-face {
   font-family: "DMSans-Regular";
-  src: url(./DM_Sans/DMSans-Regular.ttf);
+  src: url(../DM_Sans/DMSans-Regular.ttf);
 }
 
 /* Reset */
@@ -429,7 +429,7 @@ input {
 
 .hero-img {
   width: 60%;
-  background-image: url(./assets/bg_img.jpg);
+  background-image: url(../assets/bg_img.jpg);
   background-size: cover;
   background-position: center;
 }
